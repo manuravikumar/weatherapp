@@ -1,4 +1,4 @@
-resource_group_name = "rg-terraform-state"
-storage_account_name = "mtfstatestorage"
-container_name = "tfstate"
-key = "raks-weather-dashboard.tfstate"
+resource_group_name  = "rg-tfstate"
+storage_account_name = "yourtfstatestorage"
+container_name       = "mtfstatestorage"
+key                  = "aks-weather-dashboard.tfstate"
