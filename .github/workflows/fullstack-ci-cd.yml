@@ -48,6 +48,16 @@ jobs:
          terraform import azurerm_resource_group.rg/subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard
         working-directory: terraform
 
+      - name: Plan Terraform changes
+        run: tofu plan -out=tfplan
+        working-directory: terraform
+
+      - name: Upload Terraform plan as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: terraform 
+
       - name: Terraform Apply
         working-directory: terraform
         run: |
