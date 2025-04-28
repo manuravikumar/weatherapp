@@ -41,10 +41,6 @@ jobs:
           tofu init -backend-config=backend.yaml -upgrade
         working-directory: terraform
 
-      - name: Import resources
-        run: |
-          tofu import azurerm_resource_group.rg /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard
-        working-directory: terraform
 
       - name: Format Terraform code
         run: tofu fmt -recursive
