@@ -45,7 +45,7 @@ jobs:
 
       - name: import resources
         run: |
-         terraform import azurerm_resource_group.weather_dashboard /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard
+         terraform import azurerm_resource_group.rg/subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard
         working-directory: terraform
 
       - name: Terraform Apply
