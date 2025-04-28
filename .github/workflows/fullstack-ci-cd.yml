@@ -43,13 +43,9 @@ jobs:
 
       - name: Import resources
         run: |
-          tofu import azurerm_subnet.aks_subnet /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/aks-subnet
+          tofu import azurerm_kubernetes_cluster.aks /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard/providers/Microsoft.ContainerService/managedClusters/aks-weather-dashboard
         working-directory: terraform
 
-      - name: Import aci resources
-        run: |
-          tofu import azurerm_subnet.aci_subnet /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard/providers/Microsoft.Network/virtualNetworks/aks-vnet/subnets/aci-subnet
-        working-directory: terraform
 
       - name: Format Terraform code
         run: tofu fmt -recursive
