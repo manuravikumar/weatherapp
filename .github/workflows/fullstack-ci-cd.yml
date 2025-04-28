@@ -90,5 +90,6 @@ jobs:
 
       - name: Build and Push Frontend
         run: |
+          cd frontend
           docker build -t manuravikumar/frontend:latest frontend/
           docker push manuravikumar/frontend:latest
