@@ -42,9 +42,6 @@ jobs:
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
     
-      - name: upragde terraform
-        run: terraform init -upgrade
-        working-directory: terraform
 
       - name: import resources
         run: |
