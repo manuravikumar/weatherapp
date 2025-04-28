@@ -37,6 +37,10 @@ jobs:
         run: tofu init -backend-config=backend.yaml
         working-directory: terraform
 
+      - name: import resources
+        run: terraform import azurerm_resource_group.weather_dashboard /subscriptions/${{ secrets.AZURE_SUBSCRIPTION_ID }}/resourceGroups/rg-weather-dashboard
+        working-directory: terraform
+
       - name: Terraform Apply
         working-directory: terraform
         run: |
