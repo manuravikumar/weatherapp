@@ -40,6 +40,7 @@ jobs:
     
       - name: upragde terraform
         run: terraform init -upgrade
+        working-directory: terraform
 
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
