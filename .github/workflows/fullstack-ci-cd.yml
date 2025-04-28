@@ -5,38 +5,45 @@ on:
     branches:
       - main
 
+pull_request:
+permissions:
+  id-token: write
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    env:
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    - name: Authenticate to Azure
-      run: |
-        echo "Authenticating to Azure..."
-        az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
+      - name: Authenticate to Azure
+        run: |
+          echo "Authenticating to Azure..."
+          az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID
 
-    - name: Install OpenTofu
-      run: |
-        TOFU_VERSION="1.6.2"
-        curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
-        unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
-        sudo mv tofu /usr/local/bin/tofu
+      - name: Install OpenTofu
+        run: |
+          TOFU_VERSION="1.6.2"
+          curl -LO "https://github.com/opentofu/opentofu/releases/download/v${TOFU_VERSION}/tofu_${TOFU_VERSION}_linux_amd64.zip"
+          unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
+          sudo mv tofu /usr/local/bin/tofu
+    
 
-    - name: Initialize Terraform with backend config
-      run: tofu init -backend-config=terraform/backend.yaml
-      working-directory: terraform
+      - name: Initialize Terraform with backend config
+        run: tofu init -backend-config=backend.yaml
+        working-directory: terraform
 
-    - name: Terraform Apply
-      working-directory: terraform
-      run: |
-        tofu apply -auto-approve
+      - name: Terraform Apply
+        working-directory: terraform
+        run: |
+          tofu apply -auto-approve
 
   build-and-push-backend:
     runs-on: ubuntu-latest
