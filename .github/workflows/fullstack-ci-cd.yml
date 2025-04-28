@@ -41,12 +41,7 @@ jobs:
           tofu init -backend-config=backend.yaml -upgrade
         working-directory: terraform
 
-      - name: Import resources
-        run: |
-          tofu import azurerm_kubernetes_cluster.aks /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard/providers/Microsoft.ContainerService/managedClusters/aks-weather-dashboard
-        working-directory: terraform
-
-
+  
       - name: Format Terraform code
         run: tofu fmt -recursive
         working-directory: terraform
