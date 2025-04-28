@@ -39,7 +39,7 @@ jobs:
           sudo mv tofu /usr/local/bin/tofu
     
       - name: upragde terraform
-        upgrade tfrun: terraform init -upgrade
+        run: terraform init -upgrade
 
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
