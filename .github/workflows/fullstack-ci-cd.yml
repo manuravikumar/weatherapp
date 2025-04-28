@@ -38,6 +38,8 @@ jobs:
           unzip -o tofu_${TOFU_VERSION}_linux_amd64.zip
           sudo mv tofu /usr/local/bin/tofu
     
+      - name: upragde terraform
+        upgrade tfrun: terraform init -upgrade
 
       - name: Initialize Terraform with backend config
         run: tofu init -backend-config=backend.yaml
