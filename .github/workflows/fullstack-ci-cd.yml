@@ -20,6 +20,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+         terraform_version: 1.8.2 # or whatever version you want
+
+
       - name: Authenticate to Azure
         run: |
           echo "Authenticating to Azure..."
