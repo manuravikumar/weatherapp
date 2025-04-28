@@ -48,6 +48,14 @@ jobs:
          terraform import azurerm_resource_group.rg /subscriptions/5ca6bba0-1c13-4cf7-9f46-3146b81aec58/resourceGroups/rg-weather-dashboard
         working-directory: terraform
 
+      - name: Format Terraform code
+        run: tofu fmt -recursive
+        working-directory: terraform
+
+      - name: Validate Terraform configuration
+        run: tofu validate
+        working-directory: terraform
+
       - name: Plan Terraform changes
         run: tofu plan -out=tfplan
         working-directory: terraform
