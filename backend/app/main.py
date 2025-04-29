@@ -1,19 +1,25 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import requests
 
 app = FastAPI()
 
 API_KEY = "c51a86e60b8adc73e50727651cbc1bb8"  # Your OpenWeather API key
 
+# CORS Middleware for frontend access
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Replace "*" with frontend origin in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/api/weather")
 async def get_weather(city: str):
-    # Construct the OpenWeather API URL with the city and your API key
     url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={API_KEY}&units=metric"
-    
-    # Make the request to OpenWeather
     response = requests.get(url)
     
-    # If the response is successful, parse the data
     if response.status_code == 200:
         data = response.json()
         return {
@@ -23,4 +29,4 @@ async def get_weather(city: str):
             "wind": data["wind"]["speed"]
         }
     else:
-        return {"error": "Unable to fetch weather data"}
+        return {"error": f"Weather API returned {response.status_code}"}
