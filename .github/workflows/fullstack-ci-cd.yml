@@ -125,6 +125,11 @@ jobs:
         run: |
           kubectl apply -f frontend/deployment.yaml
 
+      - name: adding apikey
+        run: |
+         kubectl create secret generic openweather-secret --from-literal=apiKey="c51a86e60b8adc73e50727651cbc1bb8"
+
+
       - name: Deploy backend to AKS
         run: |
           kubectl apply -f backend/deployment.yaml
