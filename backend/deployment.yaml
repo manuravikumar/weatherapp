@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: manuravikumar/backend:latest
+        image: manuravikumar/backend:latest #forcing
         ports:
         - containerPort: 8000
         command: ["uvicorn"]
