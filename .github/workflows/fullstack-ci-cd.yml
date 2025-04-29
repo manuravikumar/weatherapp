@@ -117,13 +117,14 @@ jobs:
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
             }
 
-
-      - name: Deploy Frontend to AKS
+      - name: Get AKS credentials
         run: |
-          kubectl apply -f frontend/deployment.yaml --validate=false
+          az aks get-credentials --resource-group rg-weather-dashboard --name aks-weather-dashboard --overwrite-existing
 
-
-      - name: Deploy backend to AKS
+      - name: Deploy Frontend and backend to AKS
+        run: |
+          kubectl apply -f frontend/deployment.yaml
+          
+      - name: Deploy Backend to AKS
         run: |
           kubectl apply -f backend/deployment.yaml
-          
