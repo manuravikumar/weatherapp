@@ -121,6 +121,7 @@ jobs:
         run: |
           az aks get-credentials --resource-group rg-weather-dashboard --name aks-weather-dashboard --overwrite-existing
 
-      - name: Deploy Frontend to AKS
+      - name: Deploy Frontend and backend to AKS
         run: |
           kubectl apply -f frontend/deployment.yaml
+          kubectl apply -f backend/deployment.yaml
