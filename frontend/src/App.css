@@ -1,88 +1,60 @@
-/* App.css */
-
-/* Basic Reset */
-* {
+/* Font */
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+    min-height: 100vh;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-  }
-  
-  /* Body styling */
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
-    color: #333;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 100vh;
+    justify-content: center;
   }
   
-  /* Main container for the app */
-  .app-container {
+  /* Input and Button Enhancements */
+  input[type="text"] {
     width: 100%;
-    max-width: 1200px;
-    padding: 20px;
-    text-align: center;
+    max-width: 300px;
+    font-size: 16px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5); /* Tailwind's blue-500 */
+  }
+  
+  /* Weather Card Styling */
+  .weather-card {
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 1.5rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    padding: 2rem;
+    max-width: 400px;
+    margin-top: 2rem;
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
   }
   
-  /* Header styling */
+  /* Fade-in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Headings */
   h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 20px;
+    color: #1e3a8a; /* Tailwind's blue-900 */
   }
   
-  /* Button styling */
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Example of a content box with shadow */
-  .content-box {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-  }
-  
-  /* Example of a simple card component */
-  .card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin: 15px;
-    transition: transform 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-10px);
-  }
-  
-  .card h3 {
-    font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .card p {
-    font-size: 1rem;
-    color: #666;
+  h2 {
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+    color: #1e40af;
   }
   
