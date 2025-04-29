@@ -2,17 +2,17 @@ const getWeather = async () => {
   try {
     const response = await fetch(`http://104.209.92.41/api/weather?city=${city}`);
     
-    // Check if the response is successful
     if (!response.ok) {
-      throw new Error('City not found or API error');
+      const errorText = await response.text(); // Get response body for more detail
+      throw new Error(`API Error: ${response.status} ${errorText}`);
     }
 
     const data = await response.json();
     setWeather(data);
-    setError(null);  // Reset error if successful
+    setError(null);
   } catch (error) {
     console.error('Error fetching weather data:', error);
-    setError(error.message);  // Set error message
-    setWeather(null); // Reset weather in case of error
+    setError(error.message || 'Unknown error occurred');
+    setWeather(null);
   }
 };

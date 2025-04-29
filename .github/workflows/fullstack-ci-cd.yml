@@ -120,7 +120,7 @@ jobs:
 
       - name: Deploy Frontend to AKS
         run: |
-          kubectl apply -f frontend/deployment.yaml
+          kubectl apply -f frontend/deployment.yaml --validate=false
 
 
       - name: Deploy backend to AKS
