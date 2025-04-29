@@ -117,9 +117,6 @@ jobs:
               "tenantId": "${{ secrets.AZURE_TENANT_ID }}"
             }
 
-      - name: Get AKS credentials
-        run: |
-          az aks get-credentials --resource-group rg-weather-dashboard --name aks-weather-dashboard --overwrite-existing
 
       - name: Deploy Frontend to AKS
         run: |
