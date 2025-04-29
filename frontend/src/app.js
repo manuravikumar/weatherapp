@@ -1,6 +1,6 @@
 const getWeather = async () => {
   try {
-    const response = await fetch(`http://4.237.234.204/api/weather?city=${city}`);
+    const response = await fetch(`http://104.209.92.41/api/weather?city=${city}`);
     
     // Check if the response is successful
     if (!response.ok) {
