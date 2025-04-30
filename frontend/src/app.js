@@ -25,8 +25,30 @@ function App() {
     }
   };
 
+  const getWeatherIcon = (condition) => {
+    switch (condition?.toLowerCase()) {
+      case 'clear':
+        return '☀️';
+      case 'clouds':
+        return '☁️';
+      case 'rain':
+        return '🌧️';
+      case 'snow':
+        return '❄️';
+      case 'thunderstorm':
+        return '⛈️';
+      case 'drizzle':
+        return '🌦️';
+      case 'mist':
+      case 'fog':
+        return '🌫️';
+      default:
+        return '🌡️';
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4 bg-blue-100">
       <h1 className="text-4xl font-bold mb-6 text-blue-900">Weather Dashboard</h1>
       
       <input
@@ -50,10 +72,13 @@ function App() {
 
       {weather && (
         <div className="weather-card">
-          <h2>{weather.city}</h2>
+          <h2 className="text-2xl font-bold">
+            {getWeatherIcon(weather.condition)} {weather.city}
+          </h2>
           <p>🌡️ Temperature: {weather.temp} °C</p>
           <p>💧 Humidity: {weather.humidity} %</p>
           <p>🌬️ Wind Speed: {weather.wind} m/s</p>
+          <p className="mt-2 text-gray-700 italic">Condition: {weather.condition}</p>
         </div>
       )}
     </div>
