@@ -26,7 +26,8 @@ async def get_weather(city: str):
             "city": data["name"],
             "temp": data["main"]["temp"],
             "humidity": data["main"]["humidity"],
-            "wind": data["wind"]["speed"]
+            "wind": data["wind"]["speed"],
+            "condition": data["weather"][0]["main"]
         }
     else:
         return {"error": f"Weather API returned {response.status_code}"}
